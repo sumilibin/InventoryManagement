@@ -61,7 +61,6 @@ public ActionResult Index()
                 {
                     connection.Open();
                     var query = "INSERT INTO InventoryTable (Inventory_ID,Inventory_Name,Inventory_Price,Inventory_Quantity) VALUES (@Inventory_ID,@Inventory_Name,@Inventory_Price,@Inventory_Quantity)";
-                    Trace.WriteLine(query);
                     connection.Execute(query,inventory);
                     return RedirectToAction(nameof(Index));
                 }
@@ -102,8 +101,7 @@ public ActionResult Index()
                 {
                     connection.Open();
                     var query = "UPDATE InventoryTable SET Inventory_Name = @Inventory_Name, Inventory_Price = @Inventory_Price, Inventory_Quantity=@Inventory_Quantity, Inventory_ID = @Inventory_ID WHERE Id = @Id";
-                    Trace.WriteLine(query);
-                    Trace.WriteLine(connection.Execute(query, inventory));                   
+                    connection.Execute(query, inventory);                   
                 }
                 return RedirectToAction(nameof(Index));
                 
